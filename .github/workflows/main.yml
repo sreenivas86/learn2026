@@ -1,0 +1,11 @@
+name: Learn_workflow
+on: 
+  push:
+    branches: [ "main" ]
+  
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: simple
+        run: echo " runnig success............................."
