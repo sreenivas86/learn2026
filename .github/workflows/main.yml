@@ -30,7 +30,7 @@ jobs:
 
         #upload docker image to docker hub
       - name: push image
-        run: docker push
+        run: docker push ${{ secrets.DOCKER_USERNAME }}/learn2:v_${{github.run_number }}
 
       - name: docker logout
         run: docker logout
