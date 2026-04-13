@@ -12,7 +12,7 @@ jobs:
       - name: clone
         uses: actions/checkout@v6.0.2
       - name: build docker image
-        run: docker build -t sree471/learn2:latest .
+        run: docker build -t sree471/learn2:v_${{github.run_number}} .
       - name: show docker images
         run: docker images
         
