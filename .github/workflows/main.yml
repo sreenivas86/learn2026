@@ -10,7 +10,7 @@ jobs:
       - name: simple
         run: echo " runnig success............................."
       - name: build docker image
-        run: docker build -t sree471/learn2:latest
+        run: docker build -t sree471/learn2:latest .
       - name: show docker images
         run: docker images
         
