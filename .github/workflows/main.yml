@@ -44,9 +44,24 @@ jobs:
       - name: connect vm
         run: |
           ssh -i key.pem -o StrictHostKeyChecking=no ${{ secrets.VM_USER }}@${{ secrets.VM_IP }} "
-          echo 'Connected!'
-          docker ps
-          pwd
+            echo 'Connected!'
+      
+            # Stop and remove old container
+            docker stop node-app || true
+            docker rm node-app || true
+      
+            # Pull latest image
+            docker pull ${{ secrets.DOCKER_USERNAME }}/learn2:v_${{ github.run_number }}
+      
+            # Run new container
+            docker run -d --restart always --name node-app -p 80:3000 \
+              ${{ secrets.DOCKER_USERNAME }}/learn2:v_${{ github.run_number }}
+      
+            # Cleanup unused images (AFTER deploy)
+            docker image prune -af
+      
+            docker ps
+            pwd
           "
           
 
