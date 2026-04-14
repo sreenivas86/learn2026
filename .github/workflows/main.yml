@@ -37,11 +37,13 @@ jobs:
 
 
         # connect to deployment server through ssh
-      - name: ssh action
-        uses: invi5H/ssh-action@v1.0.0
+      - name: Deploy via SSH
+        uses: appleboy/ssh-action@v1.0.3
         with:
           host: ${{ secrets.VM_IP }}
-          username: ${{ secrets.VM_U_NAME }}
-          key: ${{ secrets.VM_PUBLIC_KEY }}
-          
+          username: ${{ secrets.VM_USER }}
+          key: ${{ secrets.VM_PRIVATE_KEY }}
+          script: |
+            echo "Connected successfully"
+            docker ps
         
