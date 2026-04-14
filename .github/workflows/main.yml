@@ -1,7 +1,7 @@
 name: Learn_workflow
 on: 
   push:
-    branches: [ "" ]
+    branches: [ "abc" ]
   
 jobs:
   build:
