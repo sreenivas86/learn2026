@@ -18,7 +18,7 @@ jobs:
 
       # zip the file 
       - name: zip app
-        run: zip -r release.zip
+        run: zip -r release.zip .
 
       # deploy on azure app services:
       - name: deploy app
