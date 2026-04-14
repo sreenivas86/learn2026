@@ -2,7 +2,7 @@ const express=require('express')
 
 const app= express();
 app.get("/",(req,res)=> {
-    res.send(`<h1> Hello welcome to  express js`)
+    res.send(`<h1 color= 'red'> Hello welcome to  express js`)
 })
 
 const PORT=5000
