@@ -54,7 +54,7 @@ jobs:
             docker pull ${{ secrets.DOCKER_USERNAME }}/learn2:v_${{ github.run_number }}
       
             # Run new container
-            docker run -d --restart always --name node-app -p 80:3000 \
+            docker run -d --restart always --name node-app -p 80:5000 \
               ${{ secrets.DOCKER_USERNAME }}/learn2:v_${{ github.run_number }}
       
             # Cleanup unused images (AFTER deploy)
