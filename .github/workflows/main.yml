@@ -37,7 +37,7 @@ jobs:
 
       - name: create pem file from secrete
         run: |
-          "${{secrets.VM_PRIVATE_KEY }}" > abc.pem 
+          echo "${{secrets.VM_PRIVATE_KEY }}" > abc.pem 
           chmod 600 abc.pem
 
       - name: connect vm
