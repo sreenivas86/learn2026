@@ -1,0 +1,29 @@
+name: Azure app service
+on:
+  push:
+    branches: ["main"]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: clone repo
+        uses: actions/checkout@v6.0.2
+      # setup node js for this
+      - name: Setup nodejs environment
+        uses: actions/setup-node@v6.3.0
+        with:
+          node-version: '22'
+      - name: Install dependencies
+        run: npm install
+
+      # zip the file 
+      - name: zip app
+        run: zip -r release.zip
+
+      # deploy on azure app services:
+      - name: deploy app
+        uses: Azure/webapps-deploy@v2.2.19
+        with:
+          app-name: learn_ga
+          publish-profile: ${{secrets.AZURE_WEBAPP_PUBLISH_PROFILE}}
+          package: release.zip
