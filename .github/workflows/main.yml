@@ -35,15 +35,19 @@ jobs:
       - name: docker logout
         run: docker logout
 
+      - name: create pem file from secrete
+        run: |
+          "${{secrets.VM_PRIVATE_KEY }}" > abc.pem 
+          chmod 600 abc.pem
 
-        # connect to deployment server through ssh
-      - name: Deploy via SSH
-        uses: appleboy/ssh-action@v1.0.3
-        with:
-          host: ${{ secrets.VM_IP }}
-          username: ${{ secrets.VM_USER }}
-          key: ${{ secrets.VM_PRIVATE_KEY }}
-          script: |
-            echo "Connected successfully"
-            docker ps
-        
+      - name: connect vm
+        run: |
+          ssh -i key.pem -o StrictHostKeyChecking=no ${{ secrets.VM_USER }}@${{ secrets.VM_IP }} "
+          echo 'Connected!'
+          docker ps
+          pwd
+          "
+          
+
+
+       
