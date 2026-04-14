@@ -34,4 +34,14 @@ jobs:
 
       - name: docker logout
         run: docker logout
+
+
+        # connect to deployment server through ssh
+      - name: ssh action
+        uses: invi5H/ssh-action@v1.0.0
+        with:
+          host: ${{ secrets.VM_IP }}
+          username: ${{ secrets.VM_U_NAME }}
+          key: ${{ secrets.VM_PUBLIC_KEY }}
+          
         
