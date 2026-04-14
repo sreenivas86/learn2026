@@ -34,11 +34,12 @@ jobs:
 
       - name: docker logout
         run: docker logout
-
-      - name: create pem file from secrete
+      - name: Create PEM file from secret
         run: |
-          echo "${{secrets.VM_PRIVATE_KEY }}" > abc.pem 
-          chmod 600 abc.pem
+          cat << 'EOF' > key.pem
+          ${{ secrets.VM_PRIVATE_KEY }}
+          EOF
+          chmod 600 key.pem
 
       - name: connect vm
         run: |
