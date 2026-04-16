@@ -1,0 +1,16 @@
+name: sonar-build
+on: 
+  push:
+    branches: ["main"]
+jobs:
+  build:
+    name: build and analyze
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v6.0.2
+      - name: sonar buid
+        uses: SonarSource/sonarqube-scan-action@v6
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
